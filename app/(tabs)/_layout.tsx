@@ -7,12 +7,26 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        headerStyle: {
+          backgroundColor: '#111111',
+          borderTopWidth: 0,
+          elevation: 0,
+        },
+        tabBarStyle: {
+          backgroundColor: '#111111',
+          borderTopWidth: 0,
+          elevation: 0,
+        },
+        tabBarActiveTintColor: '#ffffff',
+        tabBarInactiveTintColor: '#555555',
+        headerTintColor: '#ffffff',
+        headerTitleAlign: 'center',
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
+          title: 'Home',
+          headerTitle: 'FnacyLight',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -22,9 +36,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="settings"
         options={{
-          title: 'Tab Two',
+          title: 'Settings',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
