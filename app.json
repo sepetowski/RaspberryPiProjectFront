@@ -16,7 +16,6 @@
 
       "tsconfigPaths": true
     },
-    "backgroundColor": "#000000",
 
     "orientation": "portrait",
     "icon": "./assets/icon.png",
