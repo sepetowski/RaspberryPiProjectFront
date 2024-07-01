@@ -2,7 +2,38 @@ import '../global.css';
 
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 
+const toastConfig = {
+  success: (props: any) => (
+    <BaseToast
+      {...props}
+      style={{ backgroundColor: '#111111', borderLeftColor: 'green' }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: '400',
+        color: 'white',
+      }}
+    />
+  ),
+
+  error: (props: any) => (
+    <ErrorToast
+      {...props}
+      style={{ backgroundColor: '#111111', borderLeftColor: 'red' }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: '400',
+        color: 'white',
+      }}
+      text2Style={{
+        fontSize: 15,
+        fontWeight: '400',
+        color: 'white',
+      }}
+    />
+  ),
+};
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)',
@@ -20,19 +51,8 @@ export default function RootLayout() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
-          name="modal"
-          options={{
-            presentation: 'modal',
-            statusBarColor: '#111111',
-            headerStyle: { backgroundColor: '#111111' },
-            contentStyle: { backgroundColor: '#222222' },
-            headerTitleAlign: 'center',
-            headerTintColor: '#ffff',
-            headerTitle: 'Created by',
-          }}
-        />
       </Stack>
+      <Toast config={toastConfig} />
     </>
   );
 }

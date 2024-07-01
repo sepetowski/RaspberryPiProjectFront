@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+/* eslint-disable prettier/prettier */
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
-const data = [
-  { label: 'Solid', value: '1' },
-  { label: 'Pulse', value: '2' },
-  { label: 'Fade', value: '3' },
-  { label: 'Rainbow', value: '4' },
-];
+import { Effect } from '~/types/types';
 
-export const SelectEffect = () => {
-  const [value, setValue] = useState(data[0].value);
-
+interface Props {
+  effects: Effect[];
+  selectedEffect: Effect;
+  onSelect: (effect: Effect) => void;
+}
+export const SelectEffect = ({ effects, selectedEffect, onSelect }: Props) => {
   return (
     <View className="w-full">
       <Dropdown
@@ -22,14 +21,14 @@ export const SelectEffect = () => {
         itemContainerStyle={styles.containerStyle}
         itemTextStyle={styles.itemText}
         activeColor="#3333"
-        data={data}
+        data={effects}
         maxHeight={300}
         labelField="label"
         valueField="value"
         placeholder="Select"
-        value={value}
+        value={selectedEffect.value}
         onChange={(item) => {
-          setValue(item.value);
+          onSelect({ label: item.label, value: item.value });
         }}
       />
     </View>
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   dropdown: {
-    height: 50,
     borderColor: 'gray',
     borderWidth: 0.5,
     borderRadius: 8,

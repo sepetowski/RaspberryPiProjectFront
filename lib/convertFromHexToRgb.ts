@@ -10,9 +10,9 @@ export const hexToRgb = (hex: string) => {
       .join('');
   }
   const bigint = parseInt(hex, 16);
-  const r = (bigint >> 16) & 255;
-  const g = (bigint >> 8) & 255;
-  const b = bigint & 255;
-  if (r && g && b) return { r, g, b } as Rgb;
+  const red = (bigint >> 16) & 255;
+  const green = (bigint >> 8) & 255;
+  const blue = bigint & 255;
+  if (red && green && blue) return { red, green, blue } as Rgb;
   else return null;
 };
