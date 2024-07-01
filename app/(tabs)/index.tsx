@@ -8,8 +8,8 @@ import ColorPicker, { Panel3, HueSlider } from 'reanimated-color-picker';
 import { Button } from '~/components/Button';
 import { SelectEffect } from '~/components/SelectEffect';
 import { API, EFFECTS_DATA } from '~/constants/data';
-import { hexToRgb } from '~/lib/convertFromHexToRgb';
 import { Effect, Rgb } from '~/types/types';
+import hexRgb from 'hex-rgb';
 
 export default function Home() {
   const [currColor, setCurrColor] = useState('#ffff');
@@ -20,7 +20,9 @@ export default function Home() {
 
   const onSelectColor = ({ hex }: { hex: string }) => {
     setCurrColor(hex);
-    setRgb(hexToRgb(hex));
+    const r = hexRgb(hex);
+    const rgb: Rgb = { red: r.red, blue: r.blue, green: r.green };
+    setRgb(rgb);
   };
 
   const onSelectEffect = (effect: Effect) => {
