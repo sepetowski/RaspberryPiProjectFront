@@ -54,7 +54,7 @@ export default function Home() {
   const onSaveEffect = async () => {
     setIsSavingEffect(true);
     try {
-      await axios.post(`${API}/effect`, effectValue.value, {
+      await axios.post(`${API}/effect`, Number(effectValue.value), {
         headers: {
           'Content-Type': 'application/json',
         },
