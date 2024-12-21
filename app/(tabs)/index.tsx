@@ -3,7 +3,7 @@ import axios from 'axios';
 //import * as Permissions from 'expo-permissions';
 import { Stack } from 'expo-router';
 import hexRgb from 'hex-rgb';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import ColorPicker, { Panel3, HueSlider } from 'reanimated-color-picker';
@@ -43,11 +43,10 @@ export default function Home() {
         type: 'success',
         text1: 'Color was saved!',
       });
-    } catch (error) {
-      console.error('Error saving color:', error);
+    } catch (_) {
       Toast.show({
         type: 'error',
-        text1: 'Ops.. Something went wrong.',
+        text1: 'Ops.. Something went wrong while saving color.',
         text2: 'Please try again',
       });
     }
@@ -65,11 +64,10 @@ export default function Home() {
         type: 'success',
         text1: 'Effect was saved!',
       });
-    } catch (error) {
-      console.error('Error saving effect:', error);
+    } catch (_) {
       Toast.show({
         type: 'error',
-        text1: 'Ops.. Something went wrong.',
+        text1: 'Ops.. Something went wrong while saving effect.',
         text2: 'Please try again',
       });
     }

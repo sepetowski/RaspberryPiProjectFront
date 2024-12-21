@@ -31,9 +31,16 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="schedule"
+        name="add-schedule"
         options={{
-          title: 'Schedule',
+          title: 'Add Schedule',
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar-plus-o" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="schedules"
+        options={{
+          title: 'Your Schedules',
           tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
         }}
       />

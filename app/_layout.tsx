@@ -2,7 +2,7 @@ import '../global.css';
 
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
+import Toast, { BaseToast, ErrorToast, InfoToast } from 'react-native-toast-message';
 
 const toastConfig = {
   success: (props: any) => (
@@ -16,7 +16,17 @@ const toastConfig = {
       }}
     />
   ),
-
+  info: (props: any) => (
+    <BaseToast
+      {...props}
+      style={{ backgroundColor: '#111111', borderLeftColor: 'yellow' }}
+      text1Style={{
+        fontSize: 15,
+        fontWeight: '400',
+        color: 'white',
+      }}
+    />
+  ),
   error: (props: any) => (
     <ErrorToast
       {...props}

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
-import { View, Text, Switch } from 'react-native';
+import { View, Text, Switch, TextInput } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Toast from 'react-native-toast-message';
 import axios from 'axios';
@@ -10,9 +10,10 @@ import { API, DAYS } from '~/constants/data';
 import { SelectFromDropdown } from '~/components/SelectFromDropdown';
 import { Day } from '~/types/types';
 
-export default function Schedule() {
+export default function AddSchedule() {
   const [isSaving, setIsSaving] = useState(false);
   const [selectedTimeOnly, setSelectedTimeOnly] = useState<Date | null>(null);
+  const [scheduleName, setScheduleName] = useState<string>('New Schedule');
   const [isEnabled, setIsEnabled] = useState(false);
   const [isDayWeekActive, setIsDayWeekActive] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -36,6 +37,7 @@ export default function Schedule() {
     setSelectedTimeOnly(null);
     setIsEnabled(false);
     setIsDayWeekActive(false);
+    setScheduleName('');
     setDay(DAYS[0]);
   };
 
@@ -47,11 +49,21 @@ export default function Schedule() {
       });
       return;
     }
+
+    if (!scheduleName.trim()) {
+      Toast.show({
+        type: 'error',
+        text1: 'Please enter a schedule name',
+      });
+      return;
+    }
+
     setIsSaving(true);
     try {
       await axios.post(
         `${API}/schedule`,
         {
+          name: scheduleName.trim(),
           hour: selectedTimeOnly.getHours(),
           minute: selectedTimeOnly.getMinutes(),
           second: 0,
@@ -65,12 +77,11 @@ export default function Schedule() {
         type: 'success',
         text1: 'Schedule was saved!',
       });
-    } catch (error) {
-      console.error('Error saving schedule:', error);
+    } catch (_) {
       Toast.show({
         type: 'error',
-        text1: 'Oops, something went wrong.',
-        text2: 'Please try again.',
+        text1: 'Ops.. Something went wrong while saving schedule.',
+        text2: 'Please try again',
       });
     }
 
@@ -82,6 +93,15 @@ export default function Schedule() {
     <>
       <Stack.Screen options={{ title: 'Add new Schedule' }} />
       <View className="flex-1 gap-4 bg-background p-4">
+        <View>
+          <Text className="mb-2 text-lg text-primary">Schedule Name</Text>
+          <TextInput
+            className="mb-4 w-full text-wrap rounded-lg border border-white/10 bg-background p-3 text-white placeholder:text-white"
+            placeholder="Enter schedule name"
+            value={scheduleName}
+            onChangeText={setScheduleName}
+          />
+        </View>
         <View>
           <Text className="mb-2 text-lg text-primary">Time</Text>
           <Button

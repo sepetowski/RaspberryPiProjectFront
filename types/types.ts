@@ -15,6 +15,7 @@ export interface Day {
 }
 
 export interface Schedule {
+  name: string;
   id: number;
   hour: number;
   minute: number;
