@@ -8,3 +8,17 @@ export interface Effect {
   label: string;
   value: string;
 }
+
+export interface Day {
+  label: string;
+  value: string;
+}
+
+export interface Schedule {
+  id: number;
+  hour: number;
+  minute: number;
+  second: number;
+  day: number | null;
+  action: 0 | 1;
+}

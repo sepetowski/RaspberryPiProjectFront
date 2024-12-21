@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import ColorPicker, { Panel3, HueSlider } from 'reanimated-color-picker';
 import { Button } from '~/components/Button';
-import { SelectEffect } from '~/components/SelectEffect';
+import { SelectFromDropdown } from '~/components/SelectFromDropdown';
 import { API, EFFECTS_DATA } from '~/constants/data';
 import { Effect, Rgb } from '~/types/types';
 import hexRgb from 'hex-rgb';
@@ -32,7 +32,7 @@ export default function Home() {
   const onSaveColor = async () => {
     setIsSavingColor(true);
     try {
-      await axios.post(`${API}/color`, rgb, {
+      await axios.post(`${API}/leds/color`, rgb, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -54,7 +54,7 @@ export default function Home() {
   const onSaveEffect = async () => {
     setIsSavingEffect(true);
     try {
-      await axios.post(`${API}/effect`, Number(effectValue.value), {
+      await axios.post(`${API}/leds/effect`, Number(effectValue.value), {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -79,9 +79,9 @@ export default function Home() {
       <View className="flex-1 flex-col items-center justify-between bg-background  p-4  ">
         <View className="flex w-full flex-row items-center justify-center gap-4">
           <View className="flex-1">
-            <SelectEffect
-              effects={EFFECTS_DATA}
-              selectedEffect={effectValue}
+            <SelectFromDropdown
+              items={EFFECTS_DATA}
+              selectedItem={effectValue}
               onSelect={onSelectEffect}
             />
           </View>

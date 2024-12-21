@@ -3,14 +3,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
-import { Effect } from '~/types/types';
+import { Day, Effect } from '~/types/types';
 
 interface Props {
-  effects: Effect[];
-  selectedEffect: Effect;
-  onSelect: (effect: Effect) => void;
+  items: Effect[] | Day[];
+  selectedItem: Effect | Day;
+  onSelect: (effect: Effect | Day) => void;
 }
-export const SelectEffect = ({ effects, selectedEffect, onSelect }: Props) => {
+export const SelectFromDropdown = ({ items, selectedItem, onSelect }: Props) => {
   return (
     <View className="w-full">
       <Dropdown
@@ -21,12 +21,12 @@ export const SelectEffect = ({ effects, selectedEffect, onSelect }: Props) => {
         itemContainerStyle={styles.containerStyle}
         itemTextStyle={styles.itemText}
         activeColor="#3333"
-        data={effects}
+        data={items}
         maxHeight={300}
         labelField="label"
         valueField="value"
         placeholder="Select"
-        value={selectedEffect.value}
+        value={selectedItem.value}
         onChange={(item) => {
           onSelect({ label: item.label, value: item.value });
         }}
