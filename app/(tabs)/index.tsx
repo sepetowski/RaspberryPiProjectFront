@@ -1,15 +1,17 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
+//import * as Permissions from 'expo-permissions';
 import { Stack } from 'expo-router';
-import { useState } from 'react';
+import hexRgb from 'hex-rgb';
+import { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import ColorPicker, { Panel3, HueSlider } from 'reanimated-color-picker';
+
 import { Button } from '~/components/Button';
 import { SelectFromDropdown } from '~/components/SelectFromDropdown';
 import { API, EFFECTS_DATA } from '~/constants/data';
 import { Effect, Rgb } from '~/types/types';
-import hexRgb from 'hex-rgb';
 
 export default function Home() {
   const [currColor, setCurrColor] = useState('#ffff');
