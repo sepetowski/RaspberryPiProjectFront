@@ -17,4 +17,4 @@ export const DAYS: Day[] = [
   { label: 'Sunday', value: '0' },
 ];
 
-export const API = 'http://192.168.11.104:5000/api';
+export const API = 'http://10.0.0.6:5000/api';

@@ -33,7 +33,8 @@ export const Schedule = ({ schedule, onDelete }: ScheduleProps) => {
           {schedule.day !== null ? `Day: ${DAYS[schedule.day]?.label}` : 'Every Day'}
         </Text>
         <Text className="text-md text-white">
-          Time: {schedule.hour}:{schedule.minute.toString().padStart(2, '0')}:
+          Time: {schedule.hour ?? 'N/A'}:
+          {schedule.minute?.toString()?.padStart(2, '0') ?? 'N/A'}:
           {schedule.second.toString().padStart(2, '0')}
         </Text>
         <Text className="text-md text-white">
